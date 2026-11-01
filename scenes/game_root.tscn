@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://cgj23ghh7revs"]
+
+[sub_resource type="GDScript" id="GDScript_t68ju"]
+script/source = "extends Control
+
+var current_day: int = 1
+var day_transition_scene = preload(\"res://DayTransition.tscn\")
+
+func _ready() -> void:
+	_start_next_day()
+
+func _start_next_day() -> void:
+	# Instance the transition screen overlay
+	var transition_instance = day_transition_scene.instantiate()
+	add_child(transition_instance)
+	
+	# Trigger the day text sequence
+	transition_instance.play_day_transition(current_day, \"FLOOR 82 — RESIDENTIAL POD\")
+	
+	# Wait for the transition fade out to complete
+	await transition_instance.transition_finished
+	
+	# Remove transition screen and load actual day's gameplay UI
+	transition_instance.queue_free()
+	_load_day_gameplay_ui()
+
+func _load_day_gameplay_ui() -> void:
+	print(\"Loading daily routine for Day \", current_day)
+	# Setup your apartment UI, daily metrics, or dialogue choices here"
+
+[node name="GameRoot" type="Node2D" unique_id=1151855649]
+script = SubResource("GDScript_t68ju")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=8724589]
+offset_left = -227240.0
+offset_top = -70848.0
+offset_right = -227200.0
+offset_bottom = -70808.0
+scale = Vector2(55565082000000, 28626944000)
+color = Color(0.3882353, 0.5372549, 0.5764706, 1)
