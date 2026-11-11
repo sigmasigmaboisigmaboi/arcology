@@ -38,3 +38,8 @@ offset_right = -227200.0
 offset_bottom = -70808.0
 scale = Vector2(55565082000000, 28626944000)
 color = Color(0.3882353, 0.5372549, 0.5764706, 1)
+
+[node name="Button" type="Button" parent="." unique_id=1273869413]
+offset_right = 376.0
+offset_bottom = 25.0
+text = "HALLO"

@@ -1,4 +1,6 @@
 extends Control
+#TODO: For each scene change, the scene that will be played next 
+#could have a matching background that will preview the next scene
 
 # Signals to notify the game manager when animations complete
 signal transition_finished
@@ -44,10 +46,14 @@ func _setup_ui() -> void:
 	subtitle_label.add_theme_font_size_override("font_size", 16)
 
 	# Load retro pixel font if available
-	var font_path = "res://assets/fonts/Micro5Charted-Regular.ttf"
-	if ResourceLoader.exists(font_path):
-		var custom_font = load(font_path)
+	var font_path_day = "res://assets/fonts/80s-retro-future.ttf"
+	if ResourceLoader.exists(font_path_day):
+		var custom_font = load(font_path_day)
 		day_label.add_theme_font_override("font", custom_font)
+		
+	var font_path_subtitle = "res://assets/fonts/Micro5Charted-Regular.ttf"
+	if ResourceLoader.exists(font_path_subtitle):
+		var custom_font = load(font_path_subtitle)
 		subtitle_label.add_theme_font_override("font", custom_font)
 
 	vbox.add_child(day_label)
